@@ -1,0 +1,42 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments & Secrets
+venv/
+.env
+.env.local
+.env.*
+!.env.example
+.venv/
+env/
+*.json
+!frontend/package.json
+!frontend/package-lock.json
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+.npm/
+
+# Data and Models
+data/raw/
+data/cloud_storage_mock/
+*.db
+*.sqlite
+*.zip
+*.csv.gz
+!data/sample_household_power.csv
+!data/processed/energypulse_hourly_consumption.csv
+
+# IDEs & System
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
