@@ -17,6 +17,9 @@ env/
 *.json
 !frontend/package.json
 !frontend/package-lock.json
+!vercel.json
+!frontend/vercel.json
+!frontend/.oxlintrc.json
 
 # Node & Frontend
 node_modules/

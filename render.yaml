@@ -1,0 +1,14 @@
+services:
+  # Service 1: Complete Cloud Analytics & ML Dashboard (Docker)
+  - type: web
+    name: energypulse-cloud
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: DEMO_MODE
+        value: "True"
+      - key: PYTHONUNBUFFERED
+        value: "1"

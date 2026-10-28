@@ -60,6 +60,8 @@ export default function App() {
   const [syncStatus, setSyncStatus] = useState(null);
   const [syncing, setSyncing] = useState(false);
 
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   // Fetch initial status and analytics
   useEffect(() => {
     fetchStatus();
@@ -68,7 +70,7 @@ export default function App() {
 
   const fetchStatus = async () => {
     try {
-      const res = await fetch('/api/status');
+      const res = await fetch(`${API_BASE}/api/status`);
       const data = await res.json();
       setStatus(data);
     } catch (err) {
@@ -80,7 +82,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/analytics');
+      const res = await fetch(`${API_BASE}/api/analytics`);
       if (!res.ok) throw new Error('API server unreachable');
       const data = await res.json();
       setAnalytics(data);
@@ -94,7 +96,7 @@ export default function App() {
   const fetchForecast = async () => {
     setLoadingForecast(true);
     try {
-      const res = await fetch('/api/forecast', {
+      const res = await fetch(`${API_BASE}/api/forecast`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ model_type: modelType, horizon_hours: horizonHours })
@@ -111,7 +113,7 @@ export default function App() {
   const fetchAnomalies = async () => {
     setLoadingAnomaly(true);
     try {
-      const res = await fetch('/api/anomalies', {
+      const res = await fetch(`${API_BASE}/api/anomalies`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ std_multiplier: kStd, rolling_window_hours: windowHours })
@@ -138,7 +140,7 @@ export default function App() {
     setSyncing(true);
     setSyncStatus(null);
     try {
-      const res = await fetch('/api/sync-bigquery', { method: 'POST' });
+      const res = await fetch(`${API_BASE}/api/sync-bigquery`, { method: 'POST' });
       const data = await res.json();
       setSyncStatus(`Successfully synchronized ${data.records_synced} records to ${data.target}`);
       fetchStatus();

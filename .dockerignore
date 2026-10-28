@@ -13,6 +13,7 @@ venv
 .venv
 data/raw/
 *.zip
-*.txt
+data/raw/*.txt
+!requirements.txt
 !data/sample_household_power.csv
 tests/
